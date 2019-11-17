@@ -1,0 +1,75 @@
+<style >
+    body {
+        background: linear-gradient(to bottom right, #20BF55, #01BAEF) fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        min-width: 100%;
+        min-height: 100%;
+        text-align: center;
+        align-items: center;
+        }
+</style>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Entering captcha</title>
+</head>
+<body>
+    <p style="text-align: center; font-size:20; color: white; padding: 25;">Please enter captcha for continue<p/>
+    <button id="continue-btn" style="display:none; text-align: center;" onclick="getToken()">Continue to app</button>
+
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCH-hY0SEYH5SODXOXsOf_SaMVgwBt9uqg",
+        authDomain: "resolve-78171.firebaseapp.com",
+        databaseURL: "https://resolve-78171.firebaseio.com",
+        projectId: "resolve-78171",
+        storageBucket: "resolve-78171.appspot.com",
+        messagingSenderId: "1091276865949",
+        appId: "1:1091276865949:web:00a9c278b69d731c"
+      };
+      firebase.initializeApp(config);
+    </script>    <script>
+        function getToken(callback) {
+           
+            var container = document.createElement('div');
+            container.style.cssText = 'padding: 35; margin-top: -15;';
+            container.id = 'captcha';
+            document.body.appendChild(container);
+            var captcha = new firebase.auth.RecaptchaVerifier('captcha', {
+                'size': 'normal',
+                'callback': function(token) {
+                    callback(token);
+                },
+                'expired-callback': function() {
+                    callback('');
+                }
+            });
+            captcha.render().then(function() {
+                captcha.verify();
+            });
+        }
+        function sendTokenToApp(token) {
+            var baseUri = decodeURIComponent(location.search.replace(/^\?appurl\=/, ''));
+            const finalUrl = location.href = baseUri + '/?token=' + encodeURIComponent(token);
+            const continueBtn = document.querySelector('#continue-btn');
+            console.log(finalUrl);
+            // continueBtn.onclick = (event)=>{
+            //     window.open(finalUrl,'_blank')
+            // }
+            continueBtn.style.display = "block";
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            getToken(sendTokenToApp);
+        });
+    </script>
+</body>
+</html>
