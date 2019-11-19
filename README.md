@@ -6,7 +6,10 @@ If you stuck by the Google firebase phone Auth in react native, maybe this tutor
 
 ### Creat a captcha.html and deploy it on firebase and enable cross-origin.
 
+<p align="center">
+<img src=https://github.com/guojutaoo/react-native-firebase-phone-auth/blob/master/webView.jpeg width="300" height="490" >
+</p>
+
 ### Import Webview component in your app, in this way you will not have to be navigated to a browser which is another app.
 
 ### Write your javascript code and realize the dataflow between Webview and your app.
-
