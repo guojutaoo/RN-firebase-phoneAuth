@@ -1,15 +1,9 @@
 # RN-firebase-phone-auth
 
-## A way to solve firebase phone authentication issue with react native
+## A way to resolve firebase phone authentication issue with react native
 
-If you stuck by the Google firebase phone Auth in react native, maybe this tutorial is helpful, the solution is not fully belongs to me, but I made some adaptations and now it's praticle on React Native CLI.
-
-### Creat a captcha.html and deploy it on firebase and enable cross-origin.
+##### Google firebase phone Auth is not compatible with React Native. By hosting this single webpage we can get reCAPTCHA and phone auth function is callable, it's works for React Native CLI.
 
 <p align="center">
 <img src=https://github.com/guojutaoo/react-native-firebase-phone-auth/blob/master/webView.jpeg width="300" height="490" >
 </p>
-
-### Import Webview component in your app, in this way you will not have to be navigated to a browser which is another app.
-
-### Write your javascript code and realize the dataflow between Webview and your app.
